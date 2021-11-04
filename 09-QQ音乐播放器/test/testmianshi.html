@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery-1.12.4.js"></script>
+    
+  
+</head>
+<body>
+    <button class="btn">按钮</button>
+    <ul class="imgs"></ul>
+    <!-- <script type="text/javascript">
+        function data(result){
+            alert(result);
+        }
+        
+    </script> -->
+    <script>
+      
+         $('.btn').on('click',function(){
+        var _data1;
+        var _data2;
+        $.ajax({
+            url:"../source/api-a.json",
+            dataType:"jsonp",
+            async:true,
+            success:function(data){     
+                _data1=data;    
+                // console.log(JSON.stringify(_data1));            
+            },
+            error:function(err){
+                console.log(err);
+            }
+        }),
+        $.ajax({
+                    url:"../source/api-b.json",
+                    dataType:"jsonp",
+                    success:function(data){  
+                       _data2=data;
+                console.log(_data2);            
+                       
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+        })
+        setTimeout(function(){
+            for(let i=0;i<_data1.length;i++){
+            $(".imgs").append("<img src="+_data1[i].img+">")
+            $(".imgs").append("<img src="+_data2[i].img+">")
+            }
+           
+        },100);
+       
+        $('.btn').off("click")
+    });
+    </script>
+      <!-- <script type="text/javascript"  src="../source/api-a.json?callback=data"></script> -->
+</body>
+
+</html>
